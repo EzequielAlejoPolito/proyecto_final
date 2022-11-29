@@ -1,0 +1,36 @@
+{% extends "home/index.html" %}
+{% load static %}
+
+{% block my_blog_title %}
+Ejercicios
+{% endblock %}
+
+{% block my_blog_header %}
+    <header class="masthead" style="background-image: url('/static/home/assets/img/post-bg.jpg')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-15 col-lg-16 col-xl-14">
+                    <div class="site-heading">
+                        <h1>Lista de Ejercicios</h1>
+                        
+                    </div>
+                </div>
+            </div>
+            <a class="button_custom" href="{% url 'course:homework-add' %}">Crear Ejercicio</a>
+    </div>
+    </header>
+{% endblock %}
+
+{% block my_blog_content %}
+    {% for homework in homework_list %}
+        <!-- Post preview-->
+        <div class="post-preview">
+            <a href="{% url 'course:homework-detail' homework.id %}">
+                <h2 class="post-title">Este es el entregable: {{ homework.name }}</h2>
+                <h3 class="post-subtitle">Vencimiento de la entrega: {{ homework.due_date }}</h3>
+            </a>
+        </div>
+        <!-- Divider-->
+        <hr class="my-4" />
+    {% endfor %}
+{% endblock %}
